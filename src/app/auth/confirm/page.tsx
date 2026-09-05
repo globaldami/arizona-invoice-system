@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+
 import { createClient } from '@/lib/supabase/client';
 
-export default function ConfirmPage() {
+function ConfirmPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -31,8 +31,8 @@ export default function ConfirmPage() {
          * &refresh_token=...
          * &type=invite
          */
-        const hash = window.location.hash.replace(/^#/, '');
 
+        const hash = window.location.hash.replace(/^#/, '');
         const hashParams = new URLSearchParams(hash);
 
         const accessToken = hashParams.get('access_token') || '';
@@ -52,6 +52,7 @@ export default function ConfirmPage() {
         /*
          * Establish the Supabase session in the browser.
          */
+
         const { error: sessionError } = await supabase.auth.setSession({
           access_token: accessToken,
           refresh_token: refreshToken,
@@ -76,6 +77,7 @@ export default function ConfirmPage() {
          * so the acceptance page can validate the invitation against
          * the database.
          */
+
         if (!invitationId || !invitationToken) {
           if (mounted) {
             setError(
@@ -99,6 +101,7 @@ export default function ConfirmPage() {
          * Remove the authentication tokens from the browser URL
          * before continuing to the account setup page.
          */
+
         window.history.replaceState({}, document.title, '/auth/confirm');
 
         router.replace(`${acceptUrl.pathname}${acceptUrl.search}`);
@@ -140,11 +143,13 @@ export default function ConfirmPage() {
                     strokeLinejoin="round"
                     d="M12 9v4"
                   />
+
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M12 17h.01"
                   />
+
                   <circle cx="12" cy="12" r="9" />
                 </svg>
               </div>
@@ -178,5 +183,29 @@ export default function ConfirmPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ConfirmPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-slate-50 px-6">
+          <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
+
+            <p className="mt-4 text-sm font-medium text-slate-900">
+              Confirming your invitation...
+            </p>
+
+            <p className="mt-1 text-xs text-slate-500">
+              Please wait while we finish setting up your account.
+            </p>
+          </div>
+        </main>
+      }
+    >
+      <ConfirmPageContent />
+    </Suspense>
   );
 }

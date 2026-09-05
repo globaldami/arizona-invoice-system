@@ -1,21 +1,18 @@
 'use client';
 
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { useState } from 'react';
 
-export default function InvitePreviewPage() {
+function InvitePreviewContent() {
   const searchParams = useSearchParams();
-
   const confirmationUrl = searchParams.get('confirmation_url');
-
   const [continuing, setContinuing] = useState(false);
 
   function handleContinue() {
     if (!confirmationUrl) return;
 
     setContinuing(true);
-
     window.location.assign(confirmationUrl);
   }
 
@@ -64,7 +61,9 @@ export default function InvitePreviewPage() {
                   strokeLinejoin="round"
                   d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
                 />
+
                 <circle cx="9" cy="7" r="4" />
+
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -111,5 +110,29 @@ export default function InvitePreviewPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function InvitePreviewPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-slate-50 px-6">
+          <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+            <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
+
+            <p className="mt-4 text-sm font-medium text-slate-900">
+              Loading invitation...
+            </p>
+
+            <p className="mt-1 text-xs text-slate-500">
+              Please wait while we prepare your invitation.
+            </p>
+          </div>
+        </main>
+      }
+    >
+      <InvitePreviewContent />
+    </Suspense>
   );
 }
