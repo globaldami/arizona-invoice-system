@@ -1,13 +1,32 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 
-export const dynamic = 'force-dynamic';
-
 export default function AcceptInvitePage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-slate-50 px-4 py-12">
+          <div className="mx-auto flex min-h-[70vh] max-w-md items-center justify-center">
+            <div className="text-center">
+              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-slate-900" />
+              <p className="mt-4 text-sm text-slate-500">
+                Preparing your invitation...
+              </p>
+            </div>
+          </div>
+        </main>
+      }
+    >
+      <AcceptInviteContent />
+    </Suspense>
+  );
+}
+
+function AcceptInviteContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const supabase = createClient();
