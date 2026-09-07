@@ -307,7 +307,7 @@ export default async function InvoicesPage() {
         </div>
       </div>
 
-      <ScrollToTopButton />
+      <ScrollToTopButton className="fixed bottom-36 right-5 z-30 lg:bottom-6" />
       <MobileBottomNav />
     </main>
   );

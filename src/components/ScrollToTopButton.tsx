@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 
 type ScrollToTopButtonProps = {
-  /** Position class for the fixed button. Defaults to bottom-right, above mobile nav. */
+  /**
+   * Additional/override classes for the button position.
+   * Defaults to bottom-right, above mobile nav.
+   */
   className?: string;
 };
 
@@ -23,13 +26,16 @@ export default function ScrollToTopButton({
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // check on mount in case page is short
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   if (!showScrollTop) {
