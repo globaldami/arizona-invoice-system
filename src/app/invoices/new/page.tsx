@@ -32,7 +32,7 @@ const formatCurrency = (amount: number, currency: string) => {
 };
 
 const inputClass =
-  'w-full rounded-lg border border-slate-300 bg-white px-3.5 py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-300 outline-none transition hover:border-slate-600 focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 disabled:bg-slate-100 disabled:text-slate-500';
+  'w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3.5 py-[0.7rem] text-sm text-slate-900 placeholder:text-slate-300 outline-none transition hover:border-slate-600 focus:border-[#1e3a5f] focus:ring-4 focus:ring-[#1e3a5f]/10 disabled:bg-slate-100 disabled:text-slate-500';
 
 const selectClass = `${inputClass} cursor-pointer`;
 
@@ -624,19 +624,19 @@ export default function NewInvoicePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-100">
+    <main className="min-h-screen overflow-x-hidden bg-slate-100">
       {/* Header */}
       <header className="sticky top-0 z-30 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
+        <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
             <Link
               href="/"
-              className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+              className="shrink-0 rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
             >
               <ArrowLeft size={20} />
             </Link>
 
-            <div>
+            <div className="min-w-0">
               <h1 className="text-lg font-bold text-slate-900">
                 Create Invoice
               </h1>
@@ -651,7 +651,7 @@ export default function NewInvoicePage() {
             type="button"
             onClick={handleSaveInvoice}
             disabled={saving || invoiceNumberLoading || settingsLoading}
-            className="flex items-center gap-2 rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto md:py-2.5"
           >
             <Save size={17} />
 
@@ -664,11 +664,12 @@ export default function NewInvoicePage() {
         </div>
       </header>
 
-      <div className="mx-auto grid max-w-[1600px] gap-6 px-6 py-6 xl:grid-cols-[1fr_700px]">
+      <div className="mx-auto grid max-w-[1600px] gap-6 px-4 py-4 sm:px-6 sm:py-6 xl:grid-cols-[1fr_700px]">
         {/* ======================================================
             LEFT - FORM
         ====================================================== */}
-        <section className="space-y-6">
+
+        <section className="min-w-0 space-y-6">
           {saveError && (
             <div
               ref={errorRef}
@@ -679,13 +680,13 @@ export default function NewInvoicePage() {
           )}
 
           {/* Invoice Information */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-lg bg-slate-100 p-2">
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-5 flex min-w-0 items-center gap-3">
+              <div className="shrink-0 rounded-lg bg-slate-100 p-2">
                 <FileText size={19} className="text-slate-700" />
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <h2 className="font-semibold text-slate-900">
                   Invoice Information
                 </h2>
@@ -696,7 +697,7 @@ export default function NewInvoicePage() {
               </div>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid min-w-0 gap-5 md:grid-cols-3">
               <Field label="Invoice Number">
                 <input
                   type="text"
@@ -727,14 +728,14 @@ export default function NewInvoicePage() {
           </div>
 
           {/* Customer */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5">
               <h2 className="font-semibold text-slate-900">
                 Customer Information
               </h2>
 
               <p className="text-sm text-slate-500">
-                Enter the customer&#39;s billing information
+                Enter the customer&apos;s billing information
               </p>
             </div>
 
@@ -769,7 +770,7 @@ export default function NewInvoicePage() {
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2">
+            <div className="grid min-w-0 gap-5 md:grid-cols-2">
               <Field label="Customer Name">
                 <input
                   value={customerName}
@@ -807,7 +808,7 @@ export default function NewInvoicePage() {
                 />
               </Field>
 
-              <div className="md:col-span-2">
+              <div className="min-w-0 md:col-span-2">
                 <Field label="Address">
                   <textarea
                     value={customerAddress}
@@ -821,7 +822,7 @@ export default function NewInvoicePage() {
           </div>
 
           {/* Payment */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5">
               <h2 className="font-semibold text-slate-900">
                 Payment Information
@@ -848,9 +849,9 @@ export default function NewInvoicePage() {
           </div>
 
           {/* Items */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="mb-5 flex items-center justify-between">
-              <div>
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-5 flex min-w-0 items-start justify-between gap-4">
+              <div className="min-w-0">
                 <h2 className="font-semibold text-slate-900">Invoice Items</h2>
 
                 <p className="text-sm text-slate-500">
@@ -861,10 +862,11 @@ export default function NewInvoicePage() {
               <button
                 type="button"
                 onClick={addItem}
-                className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="flex shrink-0 items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
               >
                 <Plus size={16} />
-                Add Item
+                <span className="hidden sm:inline">Add Item</span>
+                <span className="sm:hidden">Add</span>
               </button>
             </div>
 
@@ -872,7 +874,7 @@ export default function NewInvoicePage() {
               {items.map((item, index) => (
                 <div
                   key={item.id}
-                  className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+                  className="min-w-0 rounded-lg border border-slate-200 bg-slate-50 p-3 sm:p-4"
                 >
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-sm font-semibold text-slate-700">
@@ -890,7 +892,7 @@ export default function NewInvoicePage() {
                     )}
                   </div>
 
-                  <div className="grid gap-4 md:grid-cols-[1fr_100px_160px]">
+                  <div className="grid min-w-0 gap-4 md:grid-cols-[1fr_100px_160px]">
                     <Field label="Description">
                       <input
                         value={item.description}
@@ -928,7 +930,7 @@ export default function NewInvoicePage() {
                     </Field>
                   </div>
 
-                  <div className="mt-3 text-right text-sm text-slate-500">
+                  <div className="mt-3 wrap-break-word text-right text-sm text-slate-500">
                     Item total:{' '}
                     <span className="font-semibold text-slate-900">
                       {formatCurrency(item.quantity * item.unitPrice, currency)}
@@ -940,7 +942,7 @@ export default function NewInvoicePage() {
           </div>
 
           {/* Totals */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5">
               <h2 className="font-semibold text-slate-900">Payment Summary</h2>
 
@@ -949,7 +951,7 @@ export default function NewInvoicePage() {
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid min-w-0 gap-5 md:grid-cols-3">
               <Field label="Discount">
                 <input
                   type="number"
@@ -998,7 +1000,7 @@ export default function NewInvoicePage() {
             </div>
 
             <div className="mt-6 border-t border-slate-200 pt-5">
-              <div className="ml-auto max-w-sm space-y-3">
+              <div className="ml-auto w-full max-w-sm space-y-3">
                 <SummaryRow
                   label="Subtotal"
                   value={formatCurrency(subtotal, currency)}
@@ -1037,8 +1039,8 @@ export default function NewInvoicePage() {
           </div>
 
           {/* Notes */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="grid gap-6 md:grid-cols-2">
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <div className="grid min-w-0 gap-6 md:grid-cols-2">
               <Field label="Notes">
                 <textarea
                   value={notes}
@@ -1063,9 +1065,10 @@ export default function NewInvoicePage() {
         {/* ======================================================
             RIGHT - LIVE PREVIEW
         ====================================================== */}
-        <section className="xl:sticky xl:top-25 xl:self-start">
-          <div className="mb-3 flex items-center justify-between">
-            <div>
+
+        <section className="min-w-0 xl:sticky xl:top-25 xl:self-start">
+          <div className="mb-3 flex min-w-0 items-center justify-between">
+            <div className="min-w-0">
               <h2 className="font-semibold text-slate-900">Live Preview</h2>
 
               <p className="text-sm text-slate-500">
@@ -1074,11 +1077,11 @@ export default function NewInvoicePage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-slate-300 bg-white shadow-lg">
-            <div className="p-8 text-[12px] text-slate-900">
+          <div className="min-w-0 overflow-hidden rounded-xl border border-slate-300 bg-white shadow-lg">
+            <div className="min-w-0 overflow-hidden p-5 text-[12px] text-slate-900 sm:p-8">
               {/* Top */}
-              <div className="flex items-start justify-between">
-                <div>
+              <div className="flex min-w-0 flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0">
                   <div className="mb-2 text-xl font-black tracking-wide">
                     ARIZONA
                   </div>
@@ -1092,7 +1095,7 @@ export default function NewInvoicePage() {
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <h1 className="text-3xl font-black tracking-tight">
                     INVOICE
                   </h1>
@@ -1100,7 +1103,7 @@ export default function NewInvoicePage() {
               </div>
 
               {/* Invoice meta */}
-              <div className="mt-7 grid grid-cols-3 bg-slate-100 p-4">
+              <div className="mt-7 grid grid-cols-1 gap-3 bg-slate-100 p-4 sm:grid-cols-3">
                 <PreviewMeta label="Invoice No." value={invoiceNumber || '-'} />
 
                 <PreviewMeta label="Invoice Date" value={invoiceDate || '-'} />
@@ -1109,39 +1112,45 @@ export default function NewInvoicePage() {
               </div>
 
               {/* Customer / total */}
-              <div className="mt-7 grid grid-cols-[1fr_220px] gap-6">
-                <div>
+              <div className="mt-7 grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-[1fr_220px]">
+                <div className="min-w-0">
                   <p className="font-bold text-slate-900">INVOICE TO:</p>
 
-                  <div className="mt-3">
-                    <p className="font-bold">
+                  <div className="mt-3 min-w-0">
+                    <p className="wrap-break-word font-bold">
                       {customerName || 'Customer Name'}
                     </p>
 
                     {customerCompany && (
-                      <p className="mt-1 font-semibold">{customerCompany}</p>
+                      <p className="mt-1 wrap-break-word font-semibold">
+                        {customerCompany}
+                      </p>
                     )}
 
-                    <p className="mt-2 whitespace-pre-line text-slate-600">
+                    <p className="mt-2 whitespace-pre-line wrap-break-word text-slate-600">
                       {customerAddress || 'Customer address'}
                     </p>
 
                     {customerPhone && (
-                      <p className="mt-1 text-slate-600">{customerPhone}</p>
+                      <p className="mt-1 wrap-break-word text-slate-600">
+                        {customerPhone}
+                      </p>
                     )}
 
                     {customerEmail && (
-                      <p className="text-slate-600">{customerEmail}</p>
+                      <p className="break-all text-slate-600">
+                        {customerEmail}
+                      </p>
                     )}
                   </div>
                 </div>
 
-                <div className="bg-slate-800 p-5 text-white">
+                <div className="min-w-0 bg-slate-800 p-5 text-white">
                   <p className="text-[10px] uppercase tracking-wide text-slate-300">
                     Total Due
                   </p>
 
-                  <p className="mt-2 text-2xl font-black">
+                  <p className="mt-2 wrap-break-word text-2xl font-black">
                     {formatCurrency(amountDue, currency)}
                   </p>
                 </div>
@@ -1159,8 +1168,8 @@ export default function NewInvoicePage() {
               </div>
 
               {/* Items */}
-              <div className="mt-7">
-                <div className="grid grid-cols-[35px_1fr_70px_60px_80px] bg-slate-800 px-3 py-3 font-bold text-white">
+              <div className="mt-7 min-w-0 overflow-hidden">
+                <div className="grid min-w-0 grid-cols-[28px_minmax(0,1fr)_65px_45px_75px] bg-slate-800 px-2 py-3 font-bold text-white sm:grid-cols-[35px_1fr_70px_60px_80px] sm:px-3">
                   <div>No</div>
                   <div>Product / Service</div>
                   <div className="text-right">Price</div>
@@ -1171,23 +1180,23 @@ export default function NewInvoicePage() {
                 {items.map((item, index) => (
                   <div
                     key={item.id}
-                    className="grid grid-cols-[35px_1fr_70px_60px_80px] border-b border-slate-200 px-3 py-4"
+                    className="grid min-w-0 grid-cols-[28px_minmax(0,1fr)_65px_45px_75px] border-b border-slate-200 px-2 py-4 sm:grid-cols-[35px_1fr_70px_60px_80px] sm:px-3"
                   >
                     <div>{index + 1}.</div>
 
-                    <div className="pr-2">
-                      <p className="font-semibold">
+                    <div className="min-w-0 pr-2">
+                      <p className="wrap-break-word font-semibold">
                         {item.description || 'Product / Service'}
                       </p>
                     </div>
 
-                    <div className="text-right">
+                    <div className="wrap-break-word text-right">
                       {formatCurrency(item.unitPrice, currency)}
                     </div>
 
                     <div className="text-right">{item.quantity}</div>
 
-                    <div className="text-right font-semibold">
+                    <div className="wrap-break-word text-right font-semibold">
                       {formatCurrency(item.quantity * item.unitPrice, currency)}
                     </div>
                   </div>
@@ -1196,7 +1205,7 @@ export default function NewInvoicePage() {
 
               {/* Summary */}
               <div className="mt-6 flex justify-end">
-                <div className="w-64 space-y-2">
+                <div className="w-full max-w-64 space-y-2">
                   <SummaryRow
                     label="Subtotal"
                     value={formatCurrency(subtotal, currency)}
@@ -1223,11 +1232,11 @@ export default function NewInvoicePage() {
               </div>
 
               {/* Notes */}
-              <div className="mt-10 grid grid-cols-2 gap-8">
-                <div>
+              <div className="mt-10 grid min-w-0 grid-cols-1 gap-8 sm:grid-cols-2">
+                <div className="min-w-0">
                   <p className="font-bold">NOTES</p>
 
-                  <p className="mt-3 whitespace-pre-line text-slate-600">
+                  <p className="mt-3 whitespace-pre-line wrap-break-word text-slate-600">
                     {notes || 'Thank you for your business.'}
                   </p>
 
@@ -1235,7 +1244,7 @@ export default function NewInvoicePage() {
                     <div className="mt-6">
                       <p className="font-bold">TERMS & CONDITIONS</p>
 
-                      <p className="mt-3 whitespace-pre-line text-slate-600">
+                      <p className="mt-3 whitespace-pre-line wrap-break-word text-slate-600">
                         {terms}
                       </p>
                     </div>
@@ -1251,9 +1260,8 @@ export default function NewInvoicePage() {
 
               {/* Footer */}
               <div className="mt-10 border-t-4 border-slate-900 pt-4">
-                <div className="flex justify-between text-[10px] text-slate-500">
+                <div className="flex flex-col gap-2 text-[10px] text-slate-500 sm:flex-row sm:justify-between">
                   <span>Arizona Logistics Limited</span>
-
                   <span>Thank you for your business.</span>
                 </div>
               </div>
@@ -1271,7 +1279,7 @@ export default function NewInvoicePage() {
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div>
+    <div className="min-w-0">
       <label className="mb-1.5 block text-sm font-medium text-slate-700">
         {label}
       </label>
@@ -1292,21 +1300,21 @@ function SummaryRow({
 }) {
   return (
     <div
-      className={`flex items-center justify-between gap-4 ${
+      className={`flex min-w-0 items-center justify-between gap-4 ${
         bold ? 'font-bold text-slate-900' : 'text-slate-600'
       }`}
     >
-      <span>{label}</span>
-      <span>{value}</span>
+      <span className="min-w-0">{label}</span>
+      <span className="shrink-0">{value}</span>
     </div>
   );
 }
 
 function PreviewMeta({ label, value }: { label: string; value: string }) {
   return (
-    <div>
+    <div className="min-w-0">
       <p className="font-bold">{label}</p>
-      <p className="mt-1 text-slate-600">{value}</p>
+      <p className="mt-1 wrap-break-word text-slate-600">{value}</p>
     </div>
   );
 }
