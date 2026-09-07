@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 import MobileBottomNav from '@/components/MobileBottomNav';
 
 import {
@@ -626,6 +627,7 @@ export default function TeamPage() {
         </section>
       </div>
 
+      <ScrollToTopButton />
       <MobileBottomNav />
 
       {/* -------------------------------------------------------

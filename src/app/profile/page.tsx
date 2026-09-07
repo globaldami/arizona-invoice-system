@@ -18,6 +18,7 @@ import {
 
 import { createClient } from '@/lib/supabase/server';
 import { getCurrentBusiness } from '@/lib/business';
+
 import MobileBottomNav from '@/components/MobileBottomNav';
 
 export default async function ProfilePage({
@@ -151,7 +152,7 @@ export default async function ProfilePage({
               href="/dashboard"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
             >
-              <LayoutDashboard className="h-[18px] w-[18px]" />
+              <LayoutDashboard className="h-4.5 w-4.5" />
               <span>Dashboard</span>
             </Link>
 
@@ -160,7 +161,7 @@ export default async function ProfilePage({
               href="/invoices"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
             >
-              <FileText className="h-[18px] w-[18px]" />
+              <FileText className="h-4.5 w-4.5" />
               <span>Invoices</span>
             </Link>
 
@@ -169,7 +170,7 @@ export default async function ProfilePage({
               href="/customers"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
             >
-              <Users className="h-[18px] w-[18px]" />
+              <Users className="h-4.5 w-4.5" />
               <span>Customers</span>
             </Link>
 
@@ -178,7 +179,7 @@ export default async function ProfilePage({
               href="/team"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
             >
-              <Users className="h-[18px] w-[18px]" />
+              <Users className="h-4.5 w-4.5" />
               <span>Team</span>
             </Link>
 
@@ -187,7 +188,7 @@ export default async function ProfilePage({
               href="/audit-log"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
             >
-              <Activity className="h-[18px] w-[18px]" />
+              <Activity className="h-4.5 w-4.5" />
               <span>Activity</span>
             </Link>
 
@@ -196,7 +197,7 @@ export default async function ProfilePage({
               href="/profile"
               className="flex items-center gap-3 rounded-lg bg-slate-900 px-3 py-2.5 text-sm font-semibold text-white"
             >
-              <UserCircle className="h-[18px] w-[18px]" />
+              <UserCircle className="h-4.5 w-4.5" />
               <span>Profile</span>
             </Link>
 
@@ -205,7 +206,7 @@ export default async function ProfilePage({
               href="/settings"
               className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
             >
-              <Settings className="h-[18px] w-[18px]" />
+              <Settings className="h-4.5 w-4.5" />
               <span>Settings</span>
             </Link>
           </nav>
@@ -231,7 +232,7 @@ export default async function ProfilePage({
                 type="submit"
                 className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition hover:bg-red-50 hover:text-red-600"
               >
-                <LogOut className="h-[18px] w-[18px]" />
+                <LogOut className="h-4.5 w-4.5" />
                 <span>Sign out</span>
               </button>
             </form>
@@ -247,7 +248,7 @@ export default async function ProfilePage({
     STICKY HEADER
 ============================================================ */}
         <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
-          <div className="flex min-h-[116px] items-center justify-between gap-4 px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
+          <div className="flex min-h-29 items-center justify-between gap-4 px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
             {/* Back + Header Text */}
             <div className="flex min-w-0 items-center gap-4">
               {/* Back to Dashboard */}
@@ -636,6 +637,7 @@ export default async function ProfilePage({
       {/* ============================================================
           MOBILE BOTTOM NAVIGATION
       ============================================================ */}
+
       <MobileBottomNav />
     </div>
   );

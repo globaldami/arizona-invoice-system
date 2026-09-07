@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { getCurrentBusiness } from '@/lib/business';
 import { redirect } from 'next/navigation';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Link from 'next/link';
 
@@ -305,6 +306,8 @@ export default async function CustomersPage() {
           )}
         </div>
       </section>
+
+      <ScrollToTopButton />
       <MobileBottomNav />
     </main>
   );

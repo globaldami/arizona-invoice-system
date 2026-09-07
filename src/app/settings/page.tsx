@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useEffect, useRef, useState } from 'react';
+
 import MobileBottomNav from '@/components/MobileBottomNav';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -518,6 +519,7 @@ export default function SettingsPage() {
           </div>
         </form>
       </div>
+
       <MobileBottomNav />
     </main>
   );

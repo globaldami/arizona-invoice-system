@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 import MobileBottomNav from '@/components/MobileBottomNav';
 
 import { ArrowLeft, FileText, Plus } from 'lucide-react';
@@ -306,6 +307,7 @@ export default async function InvoicesPage() {
         </div>
       </div>
 
+      <ScrollToTopButton />
       <MobileBottomNav />
     </main>
   );
