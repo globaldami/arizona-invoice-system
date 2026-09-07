@@ -352,7 +352,7 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
         {/* Header */}
         <header className="no-print sticky top-0 z-20 border-b border-slate-200 bg-white">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">
-            <div className="flex min-w-0 items-start gap-3 sm:items-center sm:gap-4">
+            <div className="flex min-w-0 items-center gap-4 sm:items-center sm:gap-4">
               <Link
                 href="/invoices"
                 className="inline-flex shrink-0 items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-slate-900"
@@ -361,7 +361,7 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
                 <span>Invoices</span>
               </Link>
 
-              <div className="hidden h-5 w-px bg-slate-200 sm:block" />
+              <div className="h-5 w-px bg-slate-200 sm:block" />
 
               <div className="min-w-0">
                 <h1 className="text-xl font-bold tracking-tight text-slate-900">
