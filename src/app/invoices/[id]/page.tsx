@@ -348,7 +348,7 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
         }
       `}</style>
 
-      <main className="min-h-screen overflow-x-hidden bg-slate-100">
+      <main className="min-h-screen bg-slate-100">
         {/* Header */}
         <header className="no-print sticky top-0 z-20 border-b border-slate-200 bg-white">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between">

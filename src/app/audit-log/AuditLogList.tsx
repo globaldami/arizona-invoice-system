@@ -8,6 +8,7 @@ import {
   Activity,
   AlertTriangle,
   ArrowLeft,
+  ArrowUp,
   CalendarDays,
   CheckCircle2,
   ChevronDown,
@@ -529,6 +530,27 @@ export default function AuditLogList({
   const [customers, setCustomers] = useState<Record<string, CustomerRecord>>(
     {},
   );
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolledToBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 100; // 100px threshold before actual bottom
+
+      setShowScrollTop(scrolledToBottom);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // check on mount in case page is short
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const customerIds = useMemo(() => {
     const ids = new Set<string>();
@@ -1293,6 +1315,17 @@ export default function AuditLogList({
           </div>
         </div>
       )}
+      {showScrollTop && (
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-5 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white shadow-lg transition hover:bg-slate-800 lg:bottom-6"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
+
       <MobileBottomNav />
     </div>
   );

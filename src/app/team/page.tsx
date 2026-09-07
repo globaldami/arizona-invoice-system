@@ -384,7 +384,7 @@ export default function TeamPage() {
   return (
     <main className="min-h-screen bg-slate-50 pb-20 lg:pb-0">
       {/* Header */}
-      <header className="border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <Link
             href="/dashboard"
