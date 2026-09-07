@@ -213,8 +213,8 @@ export default async function CustomerDetailsPage({
   return (
     <main className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="border-b bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      <header className="sticky top-0 z-20 border-b bg-white">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <Link
               href="/customers"
@@ -239,7 +239,7 @@ export default async function CustomerDetailsPage({
 
           <Link
             href={`/customers/${customer.id}/edit`}
-            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+            className="inline-flex items-center gap-2 self-end rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 sm:self-auto"
           >
             <Pencil size={16} />
             Edit Customer
